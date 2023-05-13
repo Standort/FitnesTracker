@@ -5,12 +5,14 @@ public class Session {
     private Workout workout;
     private LocalDateTime dateOfCreation;
     private int duration;//seconds
+    private String type;
     
-    public Session(User user, Workout workout, int duration) {
+    public Session(User user, Workout workout, int duration, String type) {
         this.user = user;
         this.workout = workout;
         this.dateOfCreation = LocalDateTime.now();
         this.duration = duration;
+        this.type = type;
     }
     
     public User getUser() {
@@ -48,5 +50,11 @@ public class Session {
         float cb = workout.getCaloriesPerMinute() * this.duration;
         return cb;
 
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getType() {
+        return this.type;
     }
 }
