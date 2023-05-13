@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import javax.swing.SwingUtilities;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -8,8 +9,12 @@ public class App {
         //Session session = new Session(user, workout, 2, "WeightLifting");
         WeightLiftingSession wlSession = new WeightLiftingSession(user, workout, 10, null);
         CardioSession cardio = new CardioSession(user, workout, 10, null);
-        DisplayWindow displayWindow = new DisplayWindow("Test");
+        //DisplayWindow displayWindow = new DisplayWindow("Test");
+        //displayWindow.setText("Test text");
+        SwingUtilities.invokeLater(() -> {
 
+            CreateUserGUI createUserGUI = new CreateUserGUI();
+        });
 
     }
 }
