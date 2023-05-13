@@ -1,7 +1,8 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 public class CreateUserGUI {
@@ -15,9 +16,18 @@ public class CreateUserGUI {
     private User user;
     private String temp;
     private boolean isUserCreated = false;
+    private List<UserCreationListener> creationListeners;
+
+    public interface UserCreationListener {
+        void onUserCreated(User user);
+    }
+    public void addUserCreationListener(UserCreationListener listener) {
+        creationListeners.add(listener);
+    }
+
     public CreateUserGUI() {
         frame = new JFrame("Create User");
-
+        creationListeners = new ArrayList<>();
         // Create a JPanel for holding the components
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -47,7 +57,7 @@ public class CreateUserGUI {
         frame.getContentPane().add(panel);
 
         // Set frame properties
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
@@ -110,7 +120,6 @@ public class CreateUserGUI {
            
             isUserCreated = true;
             // Get the entered name from the text field
-            System.out.print(nameField.getText());
             String name = nameField.getText();
             //user.setName(name);
             // Get the entered height from the text field
@@ -127,6 +136,9 @@ public class CreateUserGUI {
             // ...
 
             // Display a message or perform any other actions
+            for (UserCreationListener listener : creationListeners) {
+                listener.onUserCreated(user);
+            }
             JOptionPane.showMessageDialog(frame, "User created: " + name);
 
             // Reset the text field
@@ -135,6 +147,7 @@ public class CreateUserGUI {
             weightField.setText("");
             dateOfBirth.setText("");
             frame.dispose();
+         
         }
 
     }
