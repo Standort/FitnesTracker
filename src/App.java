@@ -7,6 +7,7 @@ public class App {
         Workout workout = new Workout(0, "Cycling", 15.0f);
         //Session session = new Session(user, workout, 2, "WeightLifting");
         WeightLiftingSession wlSession = new WeightLiftingSession(user, workout, 10, null);
-        wlSession.TestPrint();
+        CardioSession cardio = new CardioSession(user, workout, 10, null);
+        cardio.TestPrint();
     }
 }
