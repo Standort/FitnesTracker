@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class user {
+public class User {
     private int userID;
     private String name;
     private LocalDate dateOfBirth;
@@ -8,7 +8,7 @@ public class user {
     private float weight;
     private String gender;
     
-    public user(int userID, String name, LocalDate dateOfBirth, float height, float weight, String gender) {
+    public User(int userID, String name, LocalDate dateOfBirth, float height, float weight, String gender) {
         this.userID = userID;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -17,7 +17,7 @@ public class user {
         this.gender = gender;
     }
     
-    public user(String name, LocalDate dateOfBirth, float height, float weight, String gender) {
+    public User(String name, LocalDate dateOfBirth, float height, float weight, String gender) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.height = height;
