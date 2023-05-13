@@ -1,3 +1,5 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 
 import javax.swing.JOptionPane;
@@ -18,17 +20,8 @@ public class App {
             CreateUserGUI createUserGUI = new CreateUserGUI();
           
 
-            // Retrieve the user data after the window is closed
-       
-            
-
-            // Perform further operations using the retrieved user data
-            // ...
-
-            // Display a message or perform any other actions
-            JOptionPane.showMessageDialog(null, "User created: " + user.getName());
-
         });
+      
 
     }
 }

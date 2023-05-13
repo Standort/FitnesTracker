@@ -12,7 +12,9 @@ public class CreateUserGUI {
     private JTextField dateOfBirth;
     private JButton createButton;
     private JPanel panel;
-
+    private User user;
+    private String temp;
+    private boolean isUserCreated = false;
     public CreateUserGUI() {
         frame = new JFrame("Create User");
 
@@ -55,12 +57,12 @@ public class CreateUserGUI {
         SwingUtilities.invokeLater(CreateUserGUI::new);
     }
 
-    public boolean checkData() {
+    public boolean checkData() {// preveri ce je prov vse unešeno
         String name = nameField.getText();
         String heightText = heightField.getText();
         String weightText = weightField.getText();
         String dateOfBirthText = dateOfBirth.getText();
-
+        temp = dateOfBirthText;
         // Check if name is not empty
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please enter a name.");
@@ -105,9 +107,22 @@ public class CreateUserGUI {
 
     private void createUser() {
         if (checkData()) {
+           
+            isUserCreated = true;
             // Get the entered name from the text field
+            System.out.print(nameField.getText());
             String name = nameField.getText();
-            
+            //user.setName(name);
+            // Get the entered height from the text field
+            float height = Float.parseFloat(heightField.getText());
+           // user.setHeight(height);
+            // Get the entered weight from the text field
+            float weight = Float.parseFloat(weightField.getText());
+           // user.setWeight(weight);
+            //// Get the entered date of birth from the text field
+            LocalDate dateOfBirthData = LocalDate.parse(temp);
+            //user.setDateOfBirth(dateOfBirthData);
+            user = new User(name, dateOfBirthData, height, weight, name);
             // Perform further operations to create the user
             // ...
 
@@ -116,7 +131,17 @@ public class CreateUserGUI {
 
             // Reset the text field
             nameField.setText("");
+            heightField.setText("");
+            weightField.setText("");
+            dateOfBirth.setText("");
+            frame.dispose();
         }
 
+    }
+    public boolean getUserCreated() {
+        return isUserCreated;
+    }
+    public User returnUser() {
+        return user;
     }
 }
