@@ -10,7 +10,6 @@ public class WeightLiftingSession extends Session {
         this.workout = workout;
         this.duration = duration;
         this.type = "WeightLifting";
-        //TODO Auto-generated constructor stub
     }
     public void TestPrint() {
         System.out.println(user + " is doing " + type);

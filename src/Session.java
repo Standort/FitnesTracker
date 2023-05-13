@@ -13,6 +13,7 @@ public class Session {
         this.dateOfCreation = LocalDateTime.now();
         this.duration = duration;
         this.type = type;
+        
     }
     
     public User getUser() {

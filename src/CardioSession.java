@@ -10,7 +10,6 @@ public class CardioSession extends Session {
         this.workout = workout;
         this.duration = duration;
         this.type = "Cardio";
-        //TODO Auto-generated constructor stub
     }
     public void TestPrint() {
         System.out.println(user + " is doing " + type);
