@@ -8,7 +8,8 @@ public class App {
         //Session session = new Session(user, workout, 2, "WeightLifting");
         WeightLiftingSession wlSession = new WeightLiftingSession(user, workout, 10, null);
         CardioSession cardio = new CardioSession(user, workout, 10, null);
-        System.out.println(cardio.getDuration());
+        DisplayWindow displayWindow = new DisplayWindow("Test");
+
 
     }
 }
