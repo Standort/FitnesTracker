@@ -1,5 +1,3 @@
-import java.time.Duration;
-
 public class CardioSession extends Session {
 
     public CardioSession(User user, Workout workout, int duration, String type) {
