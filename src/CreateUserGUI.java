@@ -107,7 +107,7 @@ public class CreateUserGUI {
         if (checkData()) {
             // Get the entered name from the text field
             String name = nameField.getText();
-
+            
             // Perform further operations to create the user
             // ...
 

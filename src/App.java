@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 public class App {
@@ -14,6 +16,18 @@ public class App {
         SwingUtilities.invokeLater(() -> {
 
             CreateUserGUI createUserGUI = new CreateUserGUI();
+          
+
+            // Retrieve the user data after the window is closed
+       
+            
+
+            // Perform further operations using the retrieved user data
+            // ...
+
+            // Display a message or perform any other actions
+            JOptionPane.showMessageDialog(null, "User created: " + user.getName());
+
         });
 
     }
