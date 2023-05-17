@@ -29,7 +29,9 @@ public class Hub {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Perform goal button action
+
                 System.out.println("Goal button clicked");
+                Goal goal = new Goal();
             }
         });
 
