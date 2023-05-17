@@ -17,6 +17,7 @@ public class CreateUserGUI {
     private String temp;
     private boolean isUserCreated = false;
     private List<UserCreationListener> creationListeners;
+    private JComboBox<String> genderComboBox;
     JLabel genderLabel = new JLabel("Gender:");
     JTextField genderField = new JTextField(20);
     public interface UserCreationListener {
@@ -50,8 +51,14 @@ public class CreateUserGUI {
         panel.add(new JLabel("Date of birth: "));
         panel.add(dateOfBirth);
 
-       
-        panel.add(genderLabel); panel.add(genderField);
+        String[] genderOptions = {"Male", "Female"};
+
+        // Create the gender JComboBox
+        genderComboBox = new JComboBox<>(genderOptions);
+        panel.add(new JLabel("Gender: "));
+        panel.add(genderComboBox);
+
+      
         // Create a JButton for creating the user
         createButton = new JButton("Create");
         createButton.addActionListener(e -> createUser());
@@ -118,7 +125,9 @@ public class CreateUserGUI {
 
         return true;
     }
-
+    public String getSelectedGender() {
+        return (String) genderComboBox.getSelectedItem();
+    }
     private void createUser() {
         if (checkData()) {
            
@@ -135,7 +144,7 @@ public class CreateUserGUI {
             //// Get the entered date of birth from the text field
             LocalDate dateOfBirthData = LocalDate.parse(temp);
 
-            String gender = genderField.getText();
+            String gender = getSelectedGender();
             //user.setDateOfBirth(dateOfBirthData);
             user = new User(name, dateOfBirthData, height, weight, gender);
             // Perform further operations to create the user

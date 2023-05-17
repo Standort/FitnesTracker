@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Hub {
     private JFrame frame;
@@ -13,22 +15,18 @@ public class Hub {
     private String goalType;
     private double weight;
     private int duration;
+    private double newCalories;
 
-    public Hub(User user){
-        this();
+    public Hub(User user) {
+
         this.user = user;
-        
-    }
-    public Hub() {
+        // Goal goal = new Goal();
 
-        Goal goal = new Goal();
-
-
-
+        double calories = calculateBMR(user);
         frame = new JFrame("Hub");
 
         // Create calorie counter label
-        calorieCounterLabel = new JLabel("Calories: 0");
+        calorieCounterLabel = new JLabel("Calories: " + calories);
         calorieCounterLabel.setHorizontalAlignment(SwingConstants.CENTER);
         calorieCounterLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
@@ -41,6 +39,24 @@ public class Hub {
 
                 System.out.println("Goal button clicked");
                 Goal goal = new Goal();
+                JFrame jFrame = goal.returnFrtFrame();
+                jFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent ee) {
+
+                        goalType = goal.getGoalType();
+                        newCalories = goal.calculateNewCalories();
+                        System.out.println(newCalories);
+                        double calories = calculateBMR(user);
+
+                        calories -= newCalories;
+
+                        System.out.println(calories);
+                        calorieCounterLabel.setText("Calories: " + calories);
+
+                    }
+                });
+
             }
         });
 
@@ -83,8 +99,10 @@ public class Hub {
         frame.pack();
         frame.setVisible(true);
     }
+
     public double calculateBMR(User user) {
         double bmr;
+        System.out.println(user.getCurrentAge());
         if (user.getGender().equalsIgnoreCase("male")) {
             bmr = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getCurrentAge() + 5;
         } else {
@@ -92,8 +110,7 @@ public class Hub {
         }
         return bmr;
     }
-    
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Hub::new);
     }
 }

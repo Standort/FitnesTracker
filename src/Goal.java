@@ -35,6 +35,7 @@ public class Goal {
                 int duration = Integer.parseInt(JOptionPane.showInputDialog(frame, "Enter desired duration in days:"));
                 saveGoal("Lose", amount, duration);
                 calculateGoal("Lose", amount, duration);
+                frame.dispose();
             }
         });
 
@@ -43,6 +44,7 @@ public class Goal {
             public void actionPerformed(ActionEvent e) {
                 saveGoal("Maintain", 0, 0);
                 calculateGoal("Maintain", 0, 0);
+                frame.dispose();
             }
         });
 
@@ -54,6 +56,7 @@ public class Goal {
                 int duration = Integer.parseInt(JOptionPane.showInputDialog(frame, "Enter desired duration in days:"));
                 saveGoal("Gain", amount, duration);
                 calculateGoal("Gain", amount, duration);
+                frame.dispose();
             }
         });
 
@@ -119,6 +122,14 @@ public class Goal {
     
     public int getDuration() {
         return duration;
+    }
+    public double calculateNewCalories() {
+        double newCalories = weight / duration;
+        newCalories*=7700;
+        return newCalories;
+    }
+    public JFrame returnFrtFrame(){
+        return frame;
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Goal::new);
