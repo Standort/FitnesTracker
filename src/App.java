@@ -23,7 +23,7 @@ public class App {
                 public void windowClosed(WindowEvent e) {
                     UserData userData = loginOrRegister.returnUserData();
                     User currenUser = userData.loadUser();
-                    System.out.println(currenUser.getName());
+                    Hub hub = new Hub(currenUser);
 
                 }
             });
