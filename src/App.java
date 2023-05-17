@@ -1,4 +1,8 @@
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.time.LocalDate;
+
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 public class App {
@@ -12,14 +16,14 @@ public class App {
         //DisplayWindow displayWindow = new DisplayWindow("Test");
         //displayWindow.setText("Test text");
         SwingUtilities.invokeLater(() -> {
-
-            // CreateUserGUI createUserGUI = new CreateUserGUI();
-            // createUserGUI.addUserCreationListener(user -> {
-            //     System.out.println("User created: " + user.getName());
-            // });
-            LoginOrRegister	loginOrRegister = new LoginOrRegister();
-            
-
+            LoginOrRegister	loginOrRegister = new LoginOrRegister(); 
+            JFrame jFrame = loginOrRegister.returnWindow();
+            jFrame.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    System.out.println("Continue");
+                }
+            });
         });
       
 

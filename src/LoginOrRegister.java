@@ -62,7 +62,9 @@ public class LoginOrRegister {
             System.out.println("User not found");
         }
     }
-
+    public JFrame returnWindow(){
+        return frame;
+    }
     public static void main(String[] args) {
         // Create an instance of the LoginOrRegister class
         SwingUtilities.invokeLater(LoginOrRegister::new);
