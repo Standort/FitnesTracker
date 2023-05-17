@@ -134,7 +134,8 @@ public class CreateUserGUI {
             user = new User(name, dateOfBirthData, height, weight, name);
             // Perform further operations to create the user
             // ...
-
+            UserData userData = new UserData("user.txt");
+            userData.saveUser(user);
             // Display a message or perform any other actions
             for (UserCreationListener listener : creationListeners) {
                 listener.onUserCreated(user);

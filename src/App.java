@@ -13,11 +13,12 @@ public class App {
         //displayWindow.setText("Test text");
         SwingUtilities.invokeLater(() -> {
 
-            CreateUserGUI createUserGUI = new CreateUserGUI();
-            createUserGUI.addUserCreationListener(user -> {
-                System.out.println("User created: " + user.getName());
-            });
-    
+            // CreateUserGUI createUserGUI = new CreateUserGUI();
+            // createUserGUI.addUserCreationListener(user -> {
+            //     System.out.println("User created: " + user.getName());
+            // });
+            LoginOrRegister	loginOrRegister = new LoginOrRegister();
+            
 
         });
       
