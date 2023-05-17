@@ -46,12 +46,14 @@ public class Hub {
 
                         goalType = goal.getGoalType();
                         newCalories = goal.calculateNewCalories();
-                        System.out.println(newCalories);
                         double calories = calculateBMR(user);
-
-                        calories -= newCalories;
-
-                        System.out.println(calories);
+                        System.out.println(goalType); // prints goal
+                        if (goalType.equals("Lose")) {
+                            calories -= newCalories;
+                        } else if (goalType.equals("Gain")) {
+                            calories += newCalories;
+                        }
+                        calories = Math.round(calories);
                         calorieCounterLabel.setText("Calories: " + calories);
 
                     }
