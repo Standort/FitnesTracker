@@ -10,12 +10,21 @@ public class Hub {
     private JButton exerciseButton;
     private JButton stepButton;
     private User user;
+    private String goalType;
+    private double weight;
+    private int duration;
+
     public Hub(User user){
         this();
         this.user = user;
         
     }
     public Hub() {
+
+        Goal goal = new Goal();
+
+
+
         frame = new JFrame("Hub");
 
         // Create calorie counter label
@@ -74,7 +83,16 @@ public class Hub {
         frame.pack();
         frame.setVisible(true);
     }
-
+    public double calculateBMR(User user) {
+        double bmr;
+        if (user.getGender().equalsIgnoreCase("male")) {
+            bmr = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getCurrentAge() + 5;
+        } else {
+            bmr = 10 * user.getWeight() + 6.25 * user.getHeight() - 5 * user.getCurrentAge() - 161;
+        }
+        return bmr;
+    }
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Hub::new);
     }

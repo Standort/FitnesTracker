@@ -17,7 +17,8 @@ public class CreateUserGUI {
     private String temp;
     private boolean isUserCreated = false;
     private List<UserCreationListener> creationListeners;
-
+    JLabel genderLabel = new JLabel("Gender:");
+    JTextField genderField = new JTextField(20);
     public interface UserCreationListener {
         void onUserCreated(User user);
     }
@@ -48,6 +49,9 @@ public class CreateUserGUI {
         dateOfBirth = new JTextField(0);
         panel.add(new JLabel("Date of birth: "));
         panel.add(dateOfBirth);
+
+       
+        panel.add(genderLabel); panel.add(genderField);
         // Create a JButton for creating the user
         createButton = new JButton("Create");
         createButton.addActionListener(e -> createUser());
@@ -130,8 +134,10 @@ public class CreateUserGUI {
            // user.setWeight(weight);
             //// Get the entered date of birth from the text field
             LocalDate dateOfBirthData = LocalDate.parse(temp);
+
+            String gender = genderField.getText();
             //user.setDateOfBirth(dateOfBirthData);
-            user = new User(name, dateOfBirthData, height, weight, name);
+            user = new User(name, dateOfBirthData, height, weight, gender);
             // Perform further operations to create the user
             // ...
             UserData userData = new UserData("user.txt");

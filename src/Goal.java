@@ -2,7 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -12,6 +14,9 @@ public class Goal {
     private JButton loseButton;
     private JButton maintainButton;
     private JButton gainButton;
+    private String goalType;
+    private double weight;
+    private int duration;
 
     public Goal() {
         frame = new JFrame("Set Goal");
@@ -25,7 +30,8 @@ public class Goal {
         loseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double amount = Double.parseDouble(JOptionPane.showInputDialog(frame, "Enter desired weight loss in kg:"));
+                double amount = Double
+                        .parseDouble(JOptionPane.showInputDialog(frame, "Enter desired weight loss in kg:"));
                 int duration = Integer.parseInt(JOptionPane.showInputDialog(frame, "Enter desired duration in days:"));
                 saveGoal("Lose", amount, duration);
                 calculateGoal("Lose", amount, duration);
@@ -43,7 +49,8 @@ public class Goal {
         gainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double amount = Double.parseDouble(JOptionPane.showInputDialog(frame, "Enter desired weight gain in kg:"));
+                double amount = Double
+                        .parseDouble(JOptionPane.showInputDialog(frame, "Enter desired weight gain in kg:"));
                 int duration = Integer.parseInt(JOptionPane.showInputDialog(frame, "Enter desired duration in days:"));
                 saveGoal("Gain", amount, duration);
                 calculateGoal("Gain", amount, duration);
@@ -63,6 +70,7 @@ public class Goal {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        readGoal();
     }
 
     private void calculateGoal(String goalType, double amount, int duration) {
@@ -85,6 +93,33 @@ public class Goal {
         }
     }
 
+    private void readGoal() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("usergoal.txt"))) {
+            String line = reader.readLine();
+            if (line != null) {
+                String[] parts = line.split(", ");
+                if (parts.length == 3) {
+                    goalType = parts[0];
+                    weight = Double.parseDouble(parts[1]);
+                    duration = Integer.parseInt(parts[2]);
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public String getGoalType() {
+        return goalType;
+    }
+    
+    public double getWeight() {
+        return weight;
+    }
+    
+    public int getDuration() {
+        return duration;
+    }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Goal::new);
     }

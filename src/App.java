@@ -22,8 +22,9 @@ public class App {
                 @Override
                 public void windowClosed(WindowEvent e) {
                     UserData userData = loginOrRegister.returnUserData();
-                    User currenUser = userData.loadUser();
-                    Hub hub = new Hub(currenUser);
+                    User currentUser = userData.loadUser();
+                    System.out.println(currentUser.getGender()); 
+                    Hub hub = new Hub(currentUser);
 
                 }
             });
