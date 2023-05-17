@@ -21,7 +21,10 @@ public class App {
             jFrame.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    System.out.println("Continue");
+                    UserData userData = loginOrRegister.returnUserData();
+                    User currenUser = userData.loadUser();
+                    System.out.println(currenUser.getName());
+
                 }
             });
         });

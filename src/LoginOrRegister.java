@@ -65,6 +65,9 @@ public class LoginOrRegister {
     public JFrame returnWindow(){
         return frame;
     }
+    public UserData returnUserData() {
+        return userData;
+    }
     public static void main(String[] args) {
         // Create an instance of the LoginOrRegister class
         SwingUtilities.invokeLater(LoginOrRegister::new);
