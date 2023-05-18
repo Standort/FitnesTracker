@@ -5,12 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Hub {
-    private JFrame frame;
-    private JLabel calorieCounterLabel;
-    private JButton goalButton;
-    private JButton exerciseButton;
-    private JButton stepButton;
+public class Hub extends GUI{
+   
     private User user;
     private String goalType;
     private double weight;

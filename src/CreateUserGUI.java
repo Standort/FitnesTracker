@@ -5,14 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 
-public class CreateUserGUI {
-    private JFrame frame;
-    private JTextField nameField;
-    private JTextField heightField;
-    private JTextField weightField;
-    private JTextField dateOfBirth;
-    private JButton createButton;
-    private JPanel panel;
+public class CreateUserGUI extends GUI{
+   
     private User user;
     private String temp;
     private boolean isUserCreated = false;

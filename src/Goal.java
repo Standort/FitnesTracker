@@ -9,16 +9,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class Goal {
-    private JFrame frame;
-    private JButton loseButton;
-    private JButton maintainButton;
-    private JButton gainButton;
+public class Goal extends GUI{
     private String goalType;
     private double weight;
     private int duration;
 
-    public Goal() {
+    public Goal(){
         frame = new JFrame("Set Goal");
 
         // Create buttons
