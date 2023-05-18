@@ -96,7 +96,7 @@ public class Goal {
         }
     }
 
-    private void readGoal() {
+    public void readGoal() {
         try (BufferedReader reader = new BufferedReader(new FileReader("usergoal.txt"))) {
             String line = reader.readLine();
             if (line != null) {

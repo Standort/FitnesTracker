@@ -43,19 +43,23 @@ public class Hub {
                 jFrame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent ee) {
-
-                        goalType = goal.getGoalType();
+                  
+                     
                         newCalories = goal.calculateNewCalories();
                         double calories = calculateBMR(user);
-                        System.out.println(goalType); // prints goal
+                        goal.readGoal();
+                        goalType = goal.getGoalType();
+                        System.out.println(goalType);
+                        System.out.println("Old cal" + calories);
+                        System.out.println("new calories: " + newCalories);
                         if (goalType.equals("Lose")) {
                             calories -= newCalories;
                         } else if (goalType.equals("Gain")) {
                             calories += newCalories;
                         }
                         calories = Math.round(calories);
+                        System.out.println(calories);
                         calorieCounterLabel.setText("Calories: " + calories);
-
                     }
                 });
 
