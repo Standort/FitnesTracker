@@ -15,4 +15,10 @@ public class GUI {
     public JTextField dateOfBirth;
     public JButton createButton;
     public JPanel panel;
+    public JTextField stepsField;
+    public JButton submitButton;
+
+    public JFrame returnJFrame(){
+        return frame;
+    }
 }

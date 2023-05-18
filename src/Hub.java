@@ -7,16 +7,10 @@ import java.awt.event.WindowEvent;
 
 public class Hub extends GUI{
    
-    private User user;
     private String goalType;
-    private double weight;
-    private int duration;
     private double newCalories;
 
     public Hub(User user) {
-
-        this.user = user;
-        // Goal goal = new Goal();
 
         double calories = calculateBMR(user);
         frame = new JFrame("Hub");
@@ -35,7 +29,7 @@ public class Hub extends GUI{
 
                 System.out.println("Goal button clicked");
                 Goal goal = new Goal();
-                JFrame jFrame = goal.returnFrtFrame();
+                JFrame jFrame = goal.returnJFrame();
                 jFrame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent ee) {
@@ -73,12 +67,24 @@ public class Hub extends GUI{
         });
 
         // Create step button
-        stepButton = new JButton("Step");
+        stepButton = new JButton("Add Steps");
         stepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Perform step button action
+                Steps steps = new Steps(user);
                 System.out.println("Step button clicked");
+                steps.returnJFrame().addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent ee) {
+                        int stepCount = steps.returnNumOfSteps();
+                        newCalories = steps.returnCalsBurned(stepCount);
+                        System.out.println(newCalories);
+                        double calories = calculateBMR(user)+newCalories;
+                        calories = Math.round(calories);
+                        System.out.println("Kalorije po korakih: " + calories);
+                        calorieCounterLabel.setText("Calories: " + calories);
+                    }
+                });
             }
         });
 
