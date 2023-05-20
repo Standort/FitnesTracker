@@ -17,6 +17,9 @@ public class GUI {
     public JPanel panel;
     public JTextField stepsField;
     public JButton submitButton;
+    public JComboBox<String> exerciseComboBox;
+    public JTextField durationField;
+
 
     public JFrame returnJFrame(){
         return frame;

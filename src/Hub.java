@@ -9,10 +9,10 @@ public class Hub extends GUI{
    
     private String goalType;
     private double newCalories;
-
+    private double calories;
     public Hub(User user) {
 
-        double calories = calculateBMR(user);
+        calories = calculateBMR(user);
         frame = new JFrame("Hub");
 
         // Create calorie counter label
@@ -61,8 +61,19 @@ public class Hub extends GUI{
         exerciseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Perform exercise button action
+                Exercise exercise = new Exercise();
                 System.out.println("Exercise button clicked");
+                exercise.returnJFrame().addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent ee) {
+                        newCalories = exercise.returnCaloriesBurnt();
+                        System.out.println(newCalories);
+                         calories += newCalories;
+                        calories = Math.round(calories);
+                        System.out.println("Kalorije po korakih: " + calories);
+                        calorieCounterLabel.setText("Calories: " + calories);
+                    }
+                });
             }
         });
 
@@ -79,7 +90,7 @@ public class Hub extends GUI{
                         int stepCount = steps.returnNumOfSteps();
                         newCalories = steps.returnCalsBurned(stepCount);
                         System.out.println(newCalories);
-                        double calories = calculateBMR(user)+newCalories;
+                        calories += newCalories;
                         calories = Math.round(calories);
                         System.out.println("Kalorije po korakih: " + calories);
                         calorieCounterLabel.setText("Calories: " + calories);

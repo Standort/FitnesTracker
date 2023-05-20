@@ -1,12 +1,12 @@
 public class Workout {
     private int workoutID;
     private String name;
-    private float cloariesPerMinute;
+    private float caloriesPerMinute;
     
-    public Workout(int workoutID, String name, float cloariesPerMinute) {
+    public Workout(int workoutID, String name, float caloriesPerMinute) {
         this.workoutID = workoutID;
         this.name = name;
-        this.cloariesPerMinute = cloariesPerMinute;
+        this.caloriesPerMinute = caloriesPerMinute;
     }
     
     public int getWorkoutID() {
@@ -25,9 +25,9 @@ public class Workout {
         this.name = name;
     }
     public void setCaloriesPerMinute(float cloariesPerMinute) {
-        this.cloariesPerMinute = cloariesPerMinute;
+        this.caloriesPerMinute = cloariesPerMinute;
     }
     public float getCaloriesPerMinute() {
-        return cloariesPerMinute;
+        return caloriesPerMinute;
     }
 }
