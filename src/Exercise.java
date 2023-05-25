@@ -10,10 +10,8 @@ public class Exercise extends GUI{
         frame = new JFrame("Enter Exercise");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Create a JPanel for holding the components
         JPanel panel = new JPanel();
 
-        // Create a JComboBox for selecting the exercise
         exerciseComboBox = new JComboBox<>();
         List<Workout> availableExercises = getAvailableExercises();
         for (Workout exercise : availableExercises) {
@@ -37,16 +35,13 @@ public class Exercise extends GUI{
         });
         panel.add(submitButton);
 
-        // Add the panel to the frame's content pane
         frame.getContentPane().add(panel);
 
-        // Set frame properties
         frame.pack();
         frame.setVisible(true);
     }
 
     private List<Workout> getAvailableExercises() {
-        // Return a list of available exercises
         List<Workout> workouts = new ArrayList<>();
         workouts.add(new Workout(0, "Running", 15));
         workouts.add(new Workout(1, "Cycling", 7));
@@ -56,10 +51,8 @@ public class Exercise extends GUI{
     }
 
     private void submitExercise() {
-        // Get the selected exercise from the dropdown
         String exercise = exerciseComboBox.getSelectedItem().toString();
 
-        // Get the entered duration from the text field
         int duration = Integer.parseInt(durationField.getText());
         List<Workout> availableExercises = getAvailableExercises();
         for (Workout exer : availableExercises) {
@@ -69,10 +62,7 @@ public class Exercise extends GUI{
                 break;
             }
         }
-        // Perform further operations with the exercise and duration data
-        // For example, you can calculate calories burned or update the user's exercise log
 
-        // Close the window
         frame.dispose();
     }
     public double returnCaloriesBurnt(){

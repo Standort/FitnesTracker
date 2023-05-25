@@ -26,7 +26,6 @@ public class User {
         this.gender = gender;
     }
     
-    // Getters and setters
     
     public int getUserID() {
         return userID;

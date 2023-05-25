@@ -15,17 +15,14 @@ public class Hub extends GUI{
         calories = calculateBMR(user);
         frame = new JFrame("Hub");
 
-        // Create calorie counter label
         calorieCounterLabel = new JLabel("Calories: " + calories);
         calorieCounterLabel.setHorizontalAlignment(SwingConstants.CENTER);
         calorieCounterLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
-        // Create goal button
         goalButton = new JButton("Set Goal");
         goalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Perform goal button action
 
                 System.out.println("Goal button clicked");
                 Goal goal = new Goal();
@@ -44,10 +41,11 @@ public class Hub extends GUI{
                         System.out.println("new calories: " + newCalories);
                         if (goalType.equals("Lose")) {
                             calories -= newCalories;
+                            setCalories(calories);
                         } else if (goalType.equals("Gain")) {
                             calories += newCalories;
+                            setCalories(calories);
                         }
-                        calories = Math.round(calories);
                         System.out.println(calories);
                         calorieCounterLabel.setText("Calories: " + calories);
                     }
@@ -56,7 +54,6 @@ public class Hub extends GUI{
             }
         });
 
-        // Create exercise button
         exerciseButton = new JButton("Exercise");
         exerciseButton.addActionListener(new ActionListener() {
             @Override
@@ -68,8 +65,8 @@ public class Hub extends GUI{
                     public void windowClosed(WindowEvent ee) {
                         newCalories = exercise.returnCaloriesBurnt();
                         System.out.println(newCalories);
-                         calories += newCalories;
-                        calories = Math.round(calories);
+                        calories += newCalories;
+                        setCalories(calories);
                         System.out.println("Kalorije po korakih: " + calories);
                         calorieCounterLabel.setText("Calories: " + calories);
                     }
@@ -77,7 +74,6 @@ public class Hub extends GUI{
             }
         });
 
-        // Create step button
         stepButton = new JButton("Add Steps");
         stepButton.addActionListener(new ActionListener() {
             @Override
@@ -89,9 +85,9 @@ public class Hub extends GUI{
                     public void windowClosed(WindowEvent ee) {
                         int stepCount = steps.returnNumOfSteps();
                         newCalories = steps.returnCalsBurned(stepCount);
-                        System.out.println(newCalories);
+                        System.out.println("Pokurjene kalorije" + newCalories + " prejsne kalorije" + calories);
                         calories += newCalories;
-                        calories = Math.round(calories);
+                        setCalories(calories);
                         System.out.println("Kalorije po korakih: " + calories);
                         calorieCounterLabel.setText("Calories: " + calories);
                     }
@@ -99,21 +95,17 @@ public class Hub extends GUI{
             }
         });
 
-        // Create panel for buttons
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
         buttonPanel.add(goalButton);
         buttonPanel.add(exerciseButton);
         buttonPanel.add(stepButton);
 
-        // Create main panel and add components
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(calorieCounterLabel, BorderLayout.NORTH);
         panel.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Add the panel to the frame's content pane
         frame.getContentPane().add(panel);
 
-        // Set frame properties
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
@@ -129,7 +121,9 @@ public class Hub extends GUI{
         }
         return bmr;
     }
-
+    public void setCalories(double nCalories){
+        this.calories = Math.round(nCalories);
+    }
     public static void main(String[] args) {
     }
 }

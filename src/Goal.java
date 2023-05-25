@@ -17,12 +17,10 @@ public class Goal extends GUI{
     public Goal(){
         frame = new JFrame("Set Goal");
 
-        // Create buttons
         loseButton = new JButton("Lose Weight");
         maintainButton = new JButton("Maintain Weight");
         gainButton = new JButton("Gain Weight");
 
-        // Add action listeners to buttons
         loseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,16 +54,13 @@ public class Goal extends GUI{
             }
         });
 
-        // Create panel for buttons
         JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
         buttonPanel.add(loseButton);
         buttonPanel.add(maintainButton);
         buttonPanel.add(gainButton);
 
-        // Add the panel to the frame's content pane
         frame.getContentPane().add(buttonPanel);
 
-        // Set frame properties
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

@@ -24,11 +24,9 @@ public class CreateUserGUI extends GUI{
     public CreateUserGUI() {
         frame = new JFrame("Create User");
         creationListeners = new ArrayList<>();
-        // Create a JPanel for holding the components
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        // Create a JTextField for entering the name
         nameField = new JTextField(0);
         panel.add(new JLabel("Name: "));
         panel.add(nameField);
@@ -47,28 +45,23 @@ public class CreateUserGUI extends GUI{
 
         String[] genderOptions = {"Male", "Female"};
 
-        // Create the gender JComboBox
         genderComboBox = new JComboBox<>(genderOptions);
         panel.add(new JLabel("Gender: "));
         panel.add(genderComboBox);
 
       
-        // Create a JButton for creating the user
         createButton = new JButton("Create");
         createButton.addActionListener(e -> createUser());
         panel.add(createButton);
 
-        // Add the panel to the frame's content pane
         frame.getContentPane().add(panel);
 
-        // Set frame properties
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
     public static void main(String[] args) {
-        // Create an instance of the CreateUserGUI
         SwingUtilities.invokeLater(CreateUserGUI::new);
     }
 
@@ -78,13 +71,11 @@ public class CreateUserGUI extends GUI{
         String weightText = weightField.getText();
         String dateOfBirthText = dateOfBirth.getText();
         temp = dateOfBirthText;
-        // Check if name is not empty
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Please enter a name.");
             return false;
         }
 
-        // Check if height is a valid float value
         try {
             float height = Float.parseFloat(heightText);
             if (height <= 0) {
@@ -96,7 +87,6 @@ public class CreateUserGUI extends GUI{
             return false;
         }
 
-        // Check if weight is a valid float value
         try {
             float weight = Float.parseFloat(weightText);
             if (weight <= 0) {
@@ -108,7 +98,6 @@ public class CreateUserGUI extends GUI{
             return false;
         }
 
-        // Check if dateOfBirth is in a valid format
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate.parse(dateOfBirthText, formatter);
@@ -126,26 +115,18 @@ public class CreateUserGUI extends GUI{
         if (checkData()) {
            
             isUserCreated = true;
-            // Get the entered name from the text field
             String name = nameField.getText();
-            //user.setName(name);
-            // Get the entered height from the text field
             float height = Float.parseFloat(heightField.getText());
            // user.setHeight(height);
-            // Get the entered weight from the text field
             float weight = Float.parseFloat(weightField.getText());
            // user.setWeight(weight);
-            //// Get the entered date of birth from the text field
             LocalDate dateOfBirthData = LocalDate.parse(temp);
 
             String gender = getSelectedGender();
             //user.setDateOfBirth(dateOfBirthData);
             user = new User(name, dateOfBirthData, height, weight, gender);
-            // Perform further operations to create the user
-            // ...
             UserData userData = new UserData("user.txt");
             userData.saveUser(user);
-            // Display a message or perform any other actions
             for (UserCreationListener listener : creationListeners) {
                 listener.onUserCreated(user);
             }
