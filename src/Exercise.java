@@ -47,6 +47,7 @@ public class Exercise extends GUI{
         workouts.add(new Workout(1, "Cycling", 7));
         workouts.add(new Workout(2, "Swimming", 12));
         workouts.add(new Workout(3, "Strength training", 3));
+        workouts.add(new Workout(4, "Jump rope", 13));
         return workouts;
     }
 
