@@ -70,7 +70,22 @@ public class Hub extends GUI {
                                 running.returnJFrame().addWindowListener(new WindowAdapter() {
                                     @Override
                                     public void windowClosed(WindowEvent ea) {
-                                        newCalories = exercise.returnCaloriesBurnt()*running.returnCalorieModifier();
+                                        newCalories = exercise.returnCaloriesBurnt() * running.returnCalorieModifier();
+                                        System.out.println(newCalories);
+                                        calories += newCalories;
+                                        setCalories(calories);
+                                        System.out.println("Kalorije po korakih: " + calories);
+                                        calorieCounterLabel.setText("Calories: " + calories);
+                                    }
+                                });
+                                break;
+                            case "Cycling":
+                            System.out.println("Cycl test");
+                                Cycling cycling = new Cycling();
+                                cycling.returnJFrame().addWindowListener(new WindowAdapter() {
+                                    @Override
+                                    public void windowClosed(WindowEvent ea) {
+                                        newCalories = exercise.returnCaloriesBurnt() * cycling.returnCalorieModifier();
                                         System.out.println(newCalories);
                                         calories += newCalories;
                                         setCalories(calories);
@@ -82,9 +97,9 @@ public class Hub extends GUI {
                             default:
                                 System.out.println("Ni");
                                 break;
-                        };
-                       
-                       
+                        }
+                        ;
+
                     }
                 });
             }

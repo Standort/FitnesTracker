@@ -66,8 +66,11 @@ public class Running extends Exercise {
         frame.setVisible(true);
     }
     public double returnCalorieModifier(){
-        double modifyPercent = 15*incline + 0.2*speed;
-        System.out.println(incline + " incline je " + speed + " speed je " + modifyPercent + " modify");
+        double dIncline = incline;
+        dIncline /=10;
+        double dSpeed = speed;
+        double modifyPercent = dIncline + 0.2*dSpeed;
+        System.out.println(dIncline + " incline je " + speed + " speed je " + modifyPercent + " modify");
         return modifyPercent;
     }
     public JFrame returnJFrame(){
