@@ -6,7 +6,11 @@ import java.util.List;
 
 public class Exercise extends GUI{
    private double caloriesBurnt; 
-    public Exercise() {
+   private String exercise;
+   public Exercise(){
+
+   }
+    public Exercise(int a) {//a nic ne naredi, samo da Running ne klice to
         frame = new JFrame("Enter Exercise");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -52,12 +56,12 @@ public class Exercise extends GUI{
     }
 
     private void submitExercise() {
-        String exercise = exerciseComboBox.getSelectedItem().toString();
+        setExercise(exerciseComboBox.getSelectedItem().toString());
 
         int duration = Integer.parseInt(durationField.getText());
         List<Workout> availableExercises = getAvailableExercises();
         for (Workout exer : availableExercises) {
-            if(exer.getName().equals(exercise)){
+            if(exer.getName().equals(returnExercise())){
 
                 caloriesBurnt = exer.getCaloriesPerMinute()*duration;
                 break;
@@ -66,8 +70,14 @@ public class Exercise extends GUI{
 
         frame.dispose();
     }
+    public void setExercise(String exercise){
+        this.exercise = exercise;
+    }
     public double returnCaloriesBurnt(){
         return caloriesBurnt;
+    }
+    public String returnExercise(){
+        return exercise;
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Exercise::new);

@@ -5,11 +5,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class Hub extends GUI{
-   
+public class Hub extends GUI {
+
     private String goalType;
     private double newCalories;
     private double calories;
+
     public Hub(User user) {
 
         calories = calculateBMR(user);
@@ -30,8 +31,7 @@ public class Hub extends GUI{
                 jFrame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent ee) {
-                  
-                     
+
                         newCalories = goal.calculateNewCalories();
                         double calories = calculateBMR(user);
                         goal.readGoal();
@@ -58,17 +58,33 @@ public class Hub extends GUI{
         exerciseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Exercise exercise = new Exercise();
+                Exercise exercise = new Exercise(1);
                 System.out.println("Exercise button clicked");
                 exercise.returnJFrame().addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent ee) {
-                        newCalories = exercise.returnCaloriesBurnt();
-                        System.out.println(newCalories);
-                        calories += newCalories;
-                        setCalories(calories);
-                        System.out.println("Kalorije po korakih: " + calories);
-                        calorieCounterLabel.setText("Calories: " + calories);
+                        String exerciseString = exercise.returnExercise();
+                        switch (exerciseString) {
+                            case "Running":
+                                Running running = new Running();
+                                running.returnJFrame().addWindowListener(new WindowAdapter() {
+                                    @Override
+                                    public void windowClosed(WindowEvent ea) {
+                                        newCalories = exercise.returnCaloriesBurnt()*running.returnCalorieModifier();
+                                        System.out.println(newCalories);
+                                        calories += newCalories;
+                                        setCalories(calories);
+                                        System.out.println("Kalorije po korakih: " + calories);
+                                        calorieCounterLabel.setText("Calories: " + calories);
+                                    }
+                                });
+                                break;
+                            default:
+                                System.out.println("Ni");
+                                break;
+                        };
+                       
+                       
                     }
                 });
             }
@@ -121,9 +137,11 @@ public class Hub extends GUI{
         }
         return bmr;
     }
-    public void setCalories(double nCalories){
+
+    public void setCalories(double nCalories) {
         this.calories = Math.round(nCalories);
     }
+
     public static void main(String[] args) {
     }
 }
