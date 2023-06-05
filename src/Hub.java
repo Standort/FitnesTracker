@@ -108,6 +108,20 @@ public class Hub extends GUI {
                                     calorieCounterLabel.setText("Calories: " + calories);
                                 }
                             });
+                            case "Swimming":
+                            System.out.println("Strength test");
+                            Swimming swimming = new Swimming();
+                            swimming.returnJFrame().addWindowListener(new WindowAdapter() {
+                                @Override
+                                public void windowClosed(WindowEvent ea) {
+                                    newCalories = exercise.returnCaloriesBurnt() * swimming.returnCalorieModifier();
+                                    System.out.println(newCalories);
+                                    calories += newCalories;
+                                    setCalories(calories);
+                                    System.out.println("Kalorije po korakih: " + calories);
+                                    calorieCounterLabel.setText("Calories: " + calories);
+                                }
+                            });
                             default:
                                 System.out.println("Ni");
                                 break;
