@@ -109,12 +109,26 @@ public class Hub extends GUI {
                                 }
                             });
                             case "Swimming":
-                            System.out.println("Strength test");
+                            System.out.println("Swimming test");
                             Swimming swimming = new Swimming();
                             swimming.returnJFrame().addWindowListener(new WindowAdapter() {
                                 @Override
                                 public void windowClosed(WindowEvent ea) {
                                     newCalories = exercise.returnCaloriesBurnt() * swimming.returnCalorieModifier();
+                                    System.out.println(newCalories);
+                                    calories += newCalories;
+                                    setCalories(calories);
+                                    System.out.println("Kalorije po korakih: " + calories);
+                                    calorieCounterLabel.setText("Calories: " + calories);
+                                }
+                            });
+                            case "Jump rope":
+                            System.out.println("jump test");
+                            JumpRope jumpRope = new JumpRope();
+                            jumpRope.returnJFrame().addWindowListener(new WindowAdapter() {
+                                @Override
+                                public void windowClosed(WindowEvent ea) {
+                                    newCalories = exercise.returnCaloriesBurnt() * jumpRope.returnCalorieModifier();
                                     System.out.println(newCalories);
                                     calories += newCalories;
                                     setCalories(calories);
