@@ -33,7 +33,11 @@ public class Hub extends GUI {
                     public void windowClosed(WindowEvent ee) {
 
                         newCalories = goal.calculateNewCalories();
-                        double calories = calculateBMR(user);
+                        if(Double.isNaN(newCalories)){
+                            newCalories=0.0;
+                        }
+                        if(Double.isNaN(calories))
+                         calories = calculateBMR(user);
                         goal.readGoal();
                         goalType = goal.getGoalType();
                         System.out.println(goalType);

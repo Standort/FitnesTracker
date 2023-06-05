@@ -4,17 +4,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class Goal extends GUI{
+public class Goal extends GUI {
     private String goalType;
     private double weight;
     private int duration;
 
-    public Goal(){
+    public Goal() {
+        File f = new File("usergoal.txt");
+        if (!f.exists()) {
+            saveGoal("Maintain", 0, 0);
+            readGoal();
+        }
+       
         frame = new JFrame("Set Goal");
 
         loseButton = new JButton("Lose Weight");
@@ -103,25 +110,31 @@ public class Goal extends GUI{
             e.printStackTrace();
         }
     }
+
     public String getGoalType() {
         return goalType;
     }
-    
+
     public double getWeight() {
         return weight;
     }
-    
+
     public int getDuration() {
         return duration;
     }
+
     public double calculateNewCalories() {
+        System.out.println("Weight: " + weight + " duration : " + duration);
         double newCalories = weight / duration;
-        newCalories*=7700;
+        newCalories *= 7700;
+        newCalories = Math.round(newCalories);
         return newCalories;
     }
-    public JFrame returnFrtFrame(){
+
+    public JFrame returnFrtFrame() {
         return frame;
     }
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(Goal::new);
     }
