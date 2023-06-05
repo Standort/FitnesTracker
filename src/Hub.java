@@ -94,6 +94,20 @@ public class Hub extends GUI {
                                     }
                                 });
                                 break;
+                            case "Strength training":
+                            System.out.println("Strength test");
+                            StrengthT strengthT = new StrengthT();
+                            strengthT.returnJFrame().addWindowListener(new WindowAdapter() {
+                                @Override
+                                public void windowClosed(WindowEvent ea) {
+                                    newCalories = exercise.returnCaloriesBurnt() * strengthT.returnCalorieModifier();
+                                    System.out.println(newCalories);
+                                    calories += newCalories;
+                                    setCalories(calories);
+                                    System.out.println("Kalorije po korakih: " + calories);
+                                    calorieCounterLabel.setText("Calories: " + calories);
+                                }
+                            });
                             default:
                                 System.out.println("Ni");
                                 break;
